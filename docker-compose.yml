@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  flask-start-kit:
+    build: ./app
+    ports:
+      - 4000:80
+    networks:
+      - default
+
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - 8080:80
+      - 443:443
+    volumes:
+      # - ./nginx/conf/:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+    networks:
+      - default
